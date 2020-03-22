@@ -1,12 +1,33 @@
 package chapter2.interfaces.payment.system;
 
-public interface PaymentProvider {
+public abstract class PaymentProvider {
 
+	protected double[] previousPayments;
+
+	protected PaymentProvider() {
+		this.previousPayments = new double[10000];
+	}
 	
-	public boolean cancelCharge(int chargeId);
+	public double[] getPreviousPayments() {
+		return this.previousPayments;
+	}
 	
-	public int charge(double totalPrice);
+	public void setPreviousPayments(double[] previousPayments) {
+		this.previousPayments = previousPayments;
+	}
 	
-	public String loadInvoice(int chargeId);
+	public void addChargeToPreviousPayments(int chargeId, double totalPrice) {
+		this.previousPayments[chargeId] = totalPrice;
+	}
+	
+	public double getChargeFromPreviousPayments(int chargeId) {
+		return this.previousPayments[chargeId];
+	}
+	
+	public abstract boolean cancelCharge(int chargeId);
+	
+	public abstract int charge(double totalPrice);
+	
+	public abstract String loadInvoice(int chargeId);
 	
 }

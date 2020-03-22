@@ -1,10 +1,10 @@
 package chapter2.interfaces.payment.system;
 
-public class AssecoPaymentSystem implements PaymentProvider {
+public class AssecoPaymentSystem extends PaymentProvider {
 
 	@Override
 	public boolean cancelCharge(int chargeId) {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 
@@ -13,13 +13,21 @@ public class AssecoPaymentSystem implements PaymentProvider {
 		
 		System.out.println("Asseco system charged ==> " + totalPrice);
 		
-		return 0;
+		int chargeID = (int)Math.random() * 10000;
+		
+		super.addChargeToPreviousPayments(chargeID, totalPrice);
+		
+		return chargeID;
 	}
 
 	@Override
 	public String loadInvoice(int chargeId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		// geçmiş ödemelerden ödeme ID'si ile ödemeyi buluyoruz.
+		double previousPaymentInvoice = super.getChargeFromPreviousPayments(chargeId);
+		
+		// String'e çeviriyoruz.
+		return String.valueOf(previousPaymentInvoice);
 	}
 
 }

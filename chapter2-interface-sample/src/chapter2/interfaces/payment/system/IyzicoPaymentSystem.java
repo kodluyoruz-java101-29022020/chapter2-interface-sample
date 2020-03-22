@@ -1,7 +1,7 @@
 package chapter2.interfaces.payment.system;
 
-public class IyzicoPaymentSystem implements PaymentProvider {
-
+public class IyzicoPaymentSystem extends PaymentProvider {	
+	
 	@Override
 	public boolean cancelCharge(int chargeId) {
 		
@@ -15,15 +15,21 @@ public class IyzicoPaymentSystem implements PaymentProvider {
 		
 		System.out.println("Iyzico system charged ==> " + totalPrice);
 		
-		return (int)Math.random() * 1000;
+		int chargeID = (int)Math.random() * 10000;
+		
+		super.addChargeToPreviousPayments(chargeID, totalPrice);
+		
+		return chargeID;
 	}
 
 	@Override
 	public String loadInvoice(int chargeId) {
 		
-		System.out.println("Your invoice ==> ");
+		// geçmiş ödemelerden ödeme ID'si ile ödemeyi buluyoruz.
+		double previousPaymentInvoice = super.getChargeFromPreviousPayments(chargeId);
 		
-		return null;
+		// String'e çeviriyoruz.
+		return String.valueOf(previousPaymentInvoice);
 	}
 
 }
