@@ -5,6 +5,6 @@ public class KDVTax implements Tax {
 	@Override
 	public double calculate(double value) {
 		
-		return value + value * 0.3;
+		return value * 0.3;
 	}
 }

@@ -21,7 +21,7 @@ public class Main {
 		
 		Tax[] taxesForClassified = { new OTVTax(), new KDVTax() };
 		
-		PaymentIntegrator classifiedPaymentIntegrator = new ClassifiedPaymentIntegrator(assecoPaymentProvider);
+		PaymentIntegrator classifiedPaymentIntegrator = new ClassifiedPaymentIntegrator(iyzicoPaymentProvider);
 		
 		classifiedPaymentIntegrator.makePayment(2000, taxesForClassified);
 		
@@ -29,7 +29,7 @@ public class Main {
 		
 		Tax[] taxesForDoping = { new KDVTax() };
 		
-		PaymentIntegrator dopingPaymentIntegrator = new DopingPaymentIntegrator(iyzicoPaymentProvider);
+		PaymentIntegrator dopingPaymentIntegrator = new DopingPaymentIntegrator(assecoPaymentProvider);
 		
 		dopingPaymentIntegrator.makePayment(200, taxesForDoping);
 		
